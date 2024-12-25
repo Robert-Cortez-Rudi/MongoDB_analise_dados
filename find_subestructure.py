@@ -40,3 +40,32 @@ no_country = db.laureates.count_documents({
 })
 
 print(no_country)
+
+# 5 - Verificando se os laureados possuem prêmios
+
+qtd = db.laureates.count_documents({})
+
+print(qtd)
+
+qtd_prizes = db.laureates.count_documents({
+    "prizes": {"$exists": True}
+})
+
+print(qtd_prizes)
+
+# 6 - Verificando se o prize está preenchido
+
+prize_contain = db.laureates.count_documents({
+    "prizes.0": {"$exists": True}
+})
+
+print(prize_contain)
+
+# 7 - Verificação dos laureados com mais de um prêmio
+
+prize_mult = db.laureates.count_documents({
+    "prizes.1": {"$exists": True}
+})
+
+print(prize_mult)
+
